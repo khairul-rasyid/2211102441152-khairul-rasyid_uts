@@ -15,30 +15,17 @@ public class Head extends Actor
     {
         if(alive)
         {
-            if(ai)
-            {
-                /*if(getOneObjectAtOffset((int)Math.cos(direction*90), (int)Math.sin(direction*90), Body.class)!=null)
-                {
-                    
-                }
-                else
-                {
-                    turnTowards(getOneObject(Food.class).getX(), getOneObject(Food.class).getY());
-                }*/
-            }
-            else
-            {
-                if(Greenfoot.isKeyDown("right")&&direction!=2)direction = 0;
-                else if(Greenfoot.isKeyDown("down")&&direction!=3)direction = 1;
-                else if(Greenfoot.isKeyDown("left")&&direction!=0)direction = 2;
-                else if(Greenfoot.isKeyDown("up")&&direction!=1)direction = 3;
-            }
+            if(Greenfoot.isKeyDown("right")&&direction!=2)direction = 0;
+            else if(Greenfoot.isKeyDown("down")&&direction!=3)direction = 1;
+            else if(Greenfoot.isKeyDown("left")&&direction!=0)direction = 2;
+            else if(Greenfoot.isKeyDown("up")&&direction!=1)direction = 3;
             setRotation(direction*90);
             nextNode = new Body(length-1, direction*90, nextNode);
             getWorld().addObject(nextNode, getX(), getY());
             move(1);
             if(getOneIntersectingObject(Food.class)!=null)foundFood();
             if(getOneIntersectingObject(Body.class)!=null||isAtEdge())death();
+            if(getOneIntersectingObject(Block.class)!=null)death();
         }
         else
         {
@@ -62,10 +49,11 @@ public class Head extends Actor
     public void death()
     {
         Counter counter = new Counter("Score: ");
-        getWorld().addObject(counter, MyWorld.getMyWidth() / 2, MyWorld.getMyHeight() / 2);
+        Playagain ply = new Playagain();
+        getWorld().addObject(counter, MyWorld.getMyWidth() / 2, MyWorld.getMyHeight() / 2 / 3);
+        getWorld().addObject(ply, MyWorld.getMyWidth() / 2, (MyWorld.getMyHeight() / 2 ));
         counter.setValue(length + 1);
         alive = false;
-        //Greenfoot.stop();
     }
     public static int getScale()
     {

@@ -5,6 +5,6 @@ public class Food extends Actor
     Random r = new Random();
     public void act()
     {
-        while(getOneIntersectingObject(Body.class)!=null)setLocation(r.nextInt(MyWorld.getMyWidth()), r.nextInt(MyWorld.getMyHeight()));
+        while(getOneIntersectingObject(Head.class)!=null)setLocation(r.nextInt(getWorld().getWidth()), r.nextInt(getWorld().getHeight()));
     }
 }

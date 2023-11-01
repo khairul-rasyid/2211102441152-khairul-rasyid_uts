@@ -9,7 +9,7 @@ public class MyWorld extends World
         super(40, 25, 20, false);
         Greenfoot.setSpeed(38);
         prepare();
-        setPaintOrder(Counter.class, Head.class, Body.class, Food.class);
+        setPaintOrder(Counter.class, Playagain.class, Block.class, Head.class, Body.class, Food.class);
     }
     public static int getMyWidth()
     {
@@ -26,5 +26,9 @@ public class MyWorld extends World
         Head head = new Head();
         addObject(head,getMyHeight()/2,getMyHeight()/2);
         addObject(new Food(), r.nextInt(getMyHeight()), r.nextInt(getMyHeight()));
+        
+        for(int i = 0; i <= 8; i++){
+            addObject(new Block(), r.nextInt(getMyHeight()), r.nextInt(getMyHeight()));
+        }
     }
 }
